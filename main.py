@@ -1,14 +1,14 @@
 import sys
 import random
-from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton
 from PyQt5.QtGui import QPainter, QColor, QBrush
+from ui_file import Ui_Form
 
 
-class MainWindow(QWidget):
+class MainWindow(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi("Ui.ui", self)
+        self.setupUi(self)
         self.flag = False
         self.pushButton.clicked.connect(self.set_update)
 
@@ -25,13 +25,14 @@ class MainWindow(QWidget):
             self.flag = False
 
     def drawEll(self, qp):
-        color = QColor("yellow")
+        a, b, c = random.randrange(0, 256), random.randrange(0, 256), random.randrange(0, 256)
+        color = QColor(a, b, c)
         qp.setPen(color)
 
-        x = random.randrange(100, 600)
-        y = random.randrange(100, 400)
-        r = random.randrange(50, 200)
-        qp.setBrush(QColor("yellow"))
+        x = random.randrange(50, 550)
+        y = random.randrange(100, 250)
+        r = random.randrange(50, 150)
+        qp.setBrush(QColor(a, b, c))
         qp.drawEllipse(x, y, r, r)
 
 
